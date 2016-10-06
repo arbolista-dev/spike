@@ -22,10 +22,6 @@ export default class BaseComponent extends React.Component {
 		this.router.pushRoute(route_name, action, payload);
 	}
 
-	scrollTo(top=0){
-		window.jQuery("html, body").animate({ scrollTop: top }, "slow");
-	}
-
 	get logged_in(){
 		if(!this.props.session){
 			return false;

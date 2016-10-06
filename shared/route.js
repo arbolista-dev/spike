@@ -32,7 +32,6 @@ export default class Route {
   getMatch(pathname) {
     let route = this;
     if (route.data.path instanceof Array) {
-      debugger;
       var match=null;
       route.data.path.some((r) => {
         match= this.match(r,pathname);

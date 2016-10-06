@@ -2,7 +2,7 @@
 import queryString from 'query-string';
 import extend from 'extend';
 
-import ServerRouter from '../server/router'
+import BaseRouter from '../shared/router'
 import { createAction } from 'redux-act';
 
 const updateLocation = createAction('Default action for updating url.');
@@ -15,15 +15,10 @@ const DEFAULT_UPDATE_LOCATION_ACTION = {
   payload: {}
 };
 
-export default class Router extends ServerRouter {
+export default class Router extends BaseRouter {
 
   get locale(){
     return Router.locale();
-  }
-
-  shouldUpdateCurrentRoute(location){
-    let router = this;
-    return !router.current_route || !router.current_route.matchesLocation(location.pathname);
   }
 
   initializeHistory(createHistory, store) {
@@ -57,17 +52,58 @@ export default class Router extends ServerRouter {
   }
 
   onLocationChange(store, new_location){
-    console.log("Location changed!");
     let router = this;
+    // NOTE: You can pass true to scrollTop property (ie Integer).
+    router.animateTransition(new_location);
+    let action = new_location.state || {},
+      query = queryString.parse(new_location.search),
+      route = router.findRouteByPath(new_location.pathname);
 
-    if (new_location.action !== 'PUSH') return false;
-    if (router.scrollForNewLocation(new_location)) router.scrollToTop();
-
-    let action = extend(true, {payload: {}}, new_location.state) || this.default_update_location_action;
-
-    action.payload['location'] = this.parseLocation(new_location);
+    action.type =  action.type || 'UPDATE_LOCATION'
+    action.location = {
+      pathname: new_location.pathname,
+      query: query,
+      route_name: route.name
+    };
+    action.location.params = route.setParams(action.location);
     store.dispatch(action);
   }
+
+  animateTransition(location){
+    if (!location.state || !location.state.transition) return;
+    let transition = location.state.transition
+    if (transition === true) animateScroll(window,500);
+  }
+
+  scrollTop(component, nextStep){
+      if(nextStep == null) {
+          return component.scrollY != null ? component.scrollY : component.scrollTop;
+      } else if(nextStep <= 0) {
+          component.scrollTo ? component.scrollTo(0, 0):component.scrollTop = 0;
+          return 0;
+      } else {
+          component.scrollTo ? component.scrollTo(0, nextStep) : component.scrollTop = nextStep;
+          return nextStep;
+      }
+  };
+
+  animateScroll(component, time){
+      var DEFAULT_TIME = 1000;
+      if(time == null) {
+          time = DEFAULT_TIME;
+      }
+      var originY = scrollTop(component);
+      var currentY = originY;
+      var originSpeed = originY / (time / 60);
+      var currentSpeed;
+      (function operate(){
+          currentSpeed = originSpeed;
+          currentY -= currentSpeed;
+          if(scrollTop(component, currentY) !== 0) {
+               window.requestAnimationFrame.call(window, operate);
+          }
+      })();
+  };
 
   get default_update_location_action(){
     return extend(true, {}, DEFAULT_UPDATE_LOCATION_ACTION);
@@ -75,16 +111,6 @@ export default class Router extends ServerRouter {
 
   scrollForNewLocation(location){
     return !location.state || !location.state.no_scroll
-  }
-
-  scrollToTop(){
-    window.jQuery("html, body").animate({ scrollTop: 0 }, "slow");
-  }
-
-  static currentWindowLocation(){
-    let pathname = window.location.pathname,
-        query = window.location.search;
-    return { pathname: pathname, query: query };
   }
 
   // Use this when createHistory is a hash history.

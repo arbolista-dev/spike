@@ -1,7 +1,7 @@
 import { fromJS } from 'immutable';
-import ServerStateManager from '../server/state_manager';
+import SharedStateManager from '../shared/state_manager';
 
-export default class ClientStateManager extends ServerStateManager {
+export default class ClientStateManager extends SharedStateManager {
 
   // Check localStorage first. If not present check session storage.
   storageValue(key){

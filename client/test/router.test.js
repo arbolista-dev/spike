@@ -1,6 +1,6 @@
 import i18n from '../../shared/test/mock/i18nFactory.mock';
 import Router from '../router'
-import {MORK_ROUTES} from '../../shared/test/mock/data.mock'
+import {MORK_ROUTES} from '../../shared/test/mock/config.mock'
 import  createHistory  from 'history/createMemoryHistory';
 import {MOCK_ACTION,MOCK_PAYLOAD} from '../../shared/test/mock/reducer.mock'
 

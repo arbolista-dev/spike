@@ -4,7 +4,7 @@ import React from 'react';
 import ReactTestUtils from 'react-addons-test-utils';
 import Router from '../../client/router'
 import StateManager from '../../client/state_manager'
-import {MORK_ROUTES,MOCK_STORE} from './mock/data.mock'
+import {MORK_ROUTES,MOCK_STORE} from './mock/config.mock'
 import {MOCK_REDUCER} from './mock/reducer.mock'
 import createHistory  from 'history/createMemoryHistory';
 
