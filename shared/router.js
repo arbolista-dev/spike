@@ -1,5 +1,5 @@
 import queryString from 'query-string';
-import Route from '../shared/route';
+import Route from 'shared/route';
 export default class BaseRouter {
 
   constructor(i18n, routes) {

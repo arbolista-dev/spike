@@ -1,4 +1,5 @@
-import BaseComponent from '../../base_component';
+import React from 'react';
+import BaseComponent from 'shared/base_component';
 import { connect } from 'react-redux';
 import template from './component.mock.rt.html'
 export default class Component extends BaseComponent {
@@ -8,6 +9,10 @@ export default class Component extends BaseComponent {
   	}
 }
 
+Component.propTypes = {
+	session: React.PropTypes.object,
+	location: React.PropTypes.object
+}
 const mapStateToProps = (state) => {
   return {
     session: state['session'],

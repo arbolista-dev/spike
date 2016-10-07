@@ -3,9 +3,10 @@
 import Jasmine from 'jasmine'
 import { argv } from 'yargs';
 import jsdom from "jsdom";
+import "app-module-path/register";
 
 var window = jsdom.jsdom('<html><head></head><body></body></html>').defaultView;
-require('app-module-path').addPath(__dirname);
+
 global.window = window;
 
 global.document = window.document;
@@ -21,9 +22,7 @@ var jasmine = new Jasmine(),
 jasmine.loadConfig({
     "spec_dir": "./",
     "spec_files": files,
-    "helpers": [
-      "./server/test/helpers/**/*.test.js"
-    ]
+
 });
 jasmine.execute();
 

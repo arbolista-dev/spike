@@ -1,5 +1,5 @@
 import { fromJS } from 'immutable';
-import SharedStateManager from '../shared/state_manager';
+import SharedStateManager from 'shared/state_manager';
 
 export default class ClientStateManager extends SharedStateManager {
 

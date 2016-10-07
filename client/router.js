@@ -2,7 +2,7 @@
 import queryString from 'query-string';
 import extend from 'extend';
 
-import BaseRouter from '../shared/router'
+import BaseRouter from 'shared/router'
 import { createAction } from 'redux-act';
 
 const updateLocation = createAction('Default action for updating url.');

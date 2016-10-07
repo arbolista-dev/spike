@@ -1,14 +1,21 @@
 import React from 'react';
-import StateManager from '../server/state_manager'
-import Router from '../server/router'
+import StateManager from 'shared/state_manager'
+import Router from 'shared/router'
 
 export default class BaseComponent extends React.Component {
+	constructor(props, context) {
+ 		super(props, context);
+  		this.state = {};
+ 	}
 	//Must
 	get state_manager(){
     	return this.context.state_manager;
   	}
   	get i18n(){
     	return this.context.i18n;
+  	}
+  	get router() {
+  		return this.context.router;
   	}
 
 	get current_route(){
@@ -26,7 +33,6 @@ export default class BaseComponent extends React.Component {
 		if(!this.props.session){
 			return false;
 		}
-	  	console.log(this.props.session);
       	return !!this.props.session.get('token');
     }
     
@@ -70,6 +76,11 @@ export default class BaseComponent extends React.Component {
 }
 
 BaseComponent.propTypes = {
-	session: React.PropTypes.object.isRequired,
-	location: React.PropTypes.object.isRequired
+	session: React.PropTypes.object,
+	location: React.PropTypes.object
+}
+BaseComponent.contextTypes = {
+	state_manager: React.PropTypes.instanceOf(StateManager),
+	router: React.PropTypes.instanceOf(Router),
+	i18n: React.PropTypes.object
 }

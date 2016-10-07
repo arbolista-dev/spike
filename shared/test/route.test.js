@@ -1,6 +1,6 @@
-import Route from '../route';
-import i18n from './mock/i18nFactory.mock';
-import {MOCK_ROUTES,MOCK_PAYLOAD} from './mock/config.mock'
+import Route from 'shared/route';
+import i18n from 'shared/test/mock/i18nFactory.mock';
+import {MOCK_ROUTES,MOCK_PAYLOAD} from 'shared/test/mock/config.mock'
 (function(){
   mockSharedRouteBehavior();
 })();

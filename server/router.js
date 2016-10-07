@@ -1,4 +1,4 @@
-import BaseRouter from '../shared/router';
+import BaseRouter from 'shared/router';
 export default class ServerRouter extends BaseRouter{
 
 }

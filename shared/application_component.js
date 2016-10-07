@@ -1,7 +1,7 @@
 import React from 'react';
 import { Provider } from 'react-redux';
-import StateManager from '../server/state_manager';
-import Router from '../server/router';
+import StateManager from 'shared/state_manager';
+import Router from 'shared/router';
 export default class ApplicationComponent extends React.Component {
 	constructor(props, context) {
 		super(props, context);
@@ -37,7 +37,7 @@ export default class ApplicationComponent extends React.Component {
 		{
 			store: this.state_manager.store
 		},
-			React.createElement(this.props.rootComponent)
+			React.createElement(this.props.rootComponent,this.props.rootComponentProps || {})
 		);
 	}
 }

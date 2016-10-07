@@ -1,8 +1,8 @@
-import i18n from '../../shared/test/mock/i18nFactory.mock';
-import Router from '../router'
-import {MOCK_ROUTES} from '../../shared/test/mock/config.mock'
+import i18n from 'shared/test/mock/i18nFactory.mock';
+import Router from 'client/router'
+import {MOCK_ROUTES} from 'shared/test/mock/config.mock'
 import  createHistory  from 'history/createMemoryHistory';
-import {MOCK_ACTION,MOCK_PAYLOAD} from '../../shared/test/mock/reducer.mock'
+import {MOCK_ACTION_OK,MOCK_PAYLOAD} from 'shared/test/mock/reducer.mock'
 
 
 (function(){
@@ -26,7 +26,7 @@ export function mockClientRouterBehavior(){
 		});
 	    it("push route fire onLocationChange",() =>{
 	    	router.initializeHistory(createHistory);
-	    	router.pushRoute(MOCK_ROUTES.name,MOCK_ACTION,MOCK_PAYLOAD);
+	    	router.pushRoute(MOCK_ROUTES.name,MOCK_ACTION_OK,MOCK_PAYLOAD);
 	    	expect(router.onLocationChange).toHaveBeenCalled();
 	    });
 
