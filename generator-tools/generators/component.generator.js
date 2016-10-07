@@ -8,7 +8,7 @@ export default (done) => {
   var name = yargs.argv._[yargs.argv._.length-1];
   var style = yargs.argv.style;
   var test = yargs.argv.test;
-  var template = yargs.argv.template;
+  var template = yargs.argv["react-template"];
   console.log(`Generating component named ${name}...`);
 	var destinationFolderName = generateHelper.data(name).componentNameLowerCase;
   var destination = yargs.argv.where || destinationFolderName;

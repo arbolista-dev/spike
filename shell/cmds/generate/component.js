@@ -27,7 +27,7 @@ exports.builder = {
 		type:"boolean"
 	},
 	"react-template":{
-		alias:["rt"],
+		alias:"rt",
 		demand:false,
 		describe:"Include react-template file",
 		default:false,
