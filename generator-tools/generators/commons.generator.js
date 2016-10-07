@@ -22,9 +22,9 @@ export function fnGenerate(name, templateDir, dest, templateName){
     }));
 }
 
-export function getPath(prefix,enable) {
+export function getPath(element,prefix,enable) {
   var flag = enable?"":"!";
-  return `${flag}${__dirname}/../templates/component/*${prefix}.tpl`;
+  return `${flag}${__dirname}/../templates/${element}/*${prefix}.tpl`;
 }
 
 

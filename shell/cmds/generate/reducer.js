@@ -1,10 +1,14 @@
+require("babel-register")({
+  presets: [ 'es2015' ]
+});
+var reducerGenerator = require("../../../generator-tools/generators/reducer.generator").default;
+
 exports.command = 'reducer <name> [--where=where] [-t]'
 exports.desc = 'Generate a new Redux Reducer'
 exports.builder = {
 	where:{
 		demand:false,
 		describe:"Where the reducer must be created",
-		default:"<name>",
 		type: "string"
 	},
 	test:{
@@ -17,5 +21,7 @@ exports.builder = {
 	}
 }
 exports.handler = function (argv) {
-  	console.log("Generating reducer...");
+  	reducerGenerator(function() {
+
+  	});
 }
