@@ -4,7 +4,7 @@ import React from 'react';
 import ReactTestUtils from 'react-addons-test-utils';
 import Router from '../../client/router'
 import StateManager from '../../client/state_manager'
-import {MORK_ROUTES,MOCK_STORE} from './mock/config.mock'
+import {MOCK_ROUTES,MOCK_STORE} from './mock/config.mock'
 import {MOCK_REDUCER} from './mock/reducer.mock'
 import createHistory  from 'history/createMemoryHistory';
 
@@ -17,7 +17,7 @@ export function mockSharedBaseComponentBehavior(){
 
   describe('shared base component behavior', ()=>{
     it('initializes component', ()=>{
-    	var router = new Router(i18n,[MORK_ROUTES]);
+    	var router = new Router(i18n,[MOCK_ROUTES]);
     	var stateManager = new StateManager();
     	stateManager.initializeStore(MOCK_STORE,MOCK_REDUCER);
 		var element = React.createElement(Component,

@@ -13,7 +13,7 @@ export default class BaseRouter {
     return this.routes.filter((route)=>{ return route.route_name !== 'Missing'; })
   }
 
-  findRoute(pathname) {
+  findRouteByPath(pathname) {
     let router = this;
     return router.routes.find((route) => {
       return route.matchesLocation(pathname);
@@ -21,12 +21,12 @@ export default class BaseRouter {
   }
 
   parseLocation(new_location){
-    let route = this.findRoute(new_location.pathname),
+    let route = this.findRouteByPath(new_location.pathname),
         location = {
           pathname: new_location.pathname,
           query: queryString.parse(new_location.search)
         };
-    location.route_name = route.route_name;
+    location.route_name = route.name;
     location.params = route.parseParams(location);
     return location;
   }

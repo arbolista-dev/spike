@@ -17,5 +17,10 @@ export default class  SharedStateManager{
     }, opts);
   }
 
+  parseInitialLocation(initial_location, router){
+    let location_state = router.parseLocation(initial_location);
+    return location_state;
+  }
+
 }
 

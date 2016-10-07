@@ -1,6 +1,6 @@
 import Route from '../route';
 import i18n from './mock/i18nFactory.mock';
-import {MORK_ROUTES,MOCK_PAYLOAD} from './mock/config.mock'
+import {MOCK_ROUTES,MOCK_PAYLOAD} from './mock/config.mock'
 (function(){
   mockSharedRouteBehavior();
 })();
@@ -11,7 +11,7 @@ export function mockSharedRouteBehavior(){
   	var route;
     it('initializes route', ()=>{
 		
-		route = new Route(MORK_ROUTES);
+		route = new Route(MOCK_ROUTES);
 		expect(route.key).toEqual("mock_route");
 		expect(route.name).toEqual("MockRoute");
 		expect(route.path).toEqual("/:mock1?/mock2/:mock3?");

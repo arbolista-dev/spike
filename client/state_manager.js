@@ -26,10 +26,4 @@ export default class ClientStateManager extends SharedStateManager {
     }, opts);
   }
 
-  getInitialData(){
-    let state_manager = this;
-    // placeholder for initial data on client before rendering app.
-    return Promise.resolve();
-  }
-
 }
