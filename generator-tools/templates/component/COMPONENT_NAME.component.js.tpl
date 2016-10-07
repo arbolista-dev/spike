@@ -18,14 +18,3 @@ class <%=  componentNameCamelCase %>Component extends SpikeComponent {
 };
 
 module.exports = <%=  componentNameCamelCase %>Component;
-
-const mapStateToProps = (state) => {
-  return {
-    session: state['session'],
-    location: state['location']
-  };
-}
-
-connect(
-  mapStateToProps
-)(Component);
