@@ -32,7 +32,7 @@ export default class BaseRouter {
   }
 
   includeHelpers(routes){
-    Object.defineProperty(routes, 'getRoute', {
+    Object.defineProperty(routes, 'findByName', {
       value: function(name){
         return this.find( route => route.name === name)
       },
@@ -42,5 +42,15 @@ export default class BaseRouter {
     return routes;
   }
 
+  urlForRoute(route_name, action, payload,params){
+    let router = this,
+        route = router.routes.findByName(route_name);
+
+    if (!route){
+      console.warn(`Could not find route "${route_name}.`);
+      return undefined;
+    }
+    return route.url(action,this.i18n,payload,params);
+  }
 
 }

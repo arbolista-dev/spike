@@ -19,7 +19,7 @@ export default class BaseComponent extends React.Component {
   	}
 
 	get current_route(){
-		return this.router.routes.getRoute(this.route_name);
+		return this.router.routes.findByName(this.route_name);
 	}
 
 	get route_name() {
@@ -50,13 +50,6 @@ export default class BaseComponent extends React.Component {
         });
       }
     }
-	get moment() {
-		let i18n = this.context.i18n;
-		if(i18n && i18n.language) {
-			moment.locale(i18n.language);
-		}
-		return moment;
-	}
 
 	get t() {
 		var i18n = this.context.i18n;

@@ -1,6 +1,8 @@
 import Route from 'shared/route';
 import i18n from 'shared/test/mock/i18nFactory.mock';
-import {MOCK_ROUTES,MOCK_PAYLOAD} from 'shared/test/mock/config.mock'
+import {MOCK_ROUTES,MOCK_PAYLOAD,MOCK_PARAMS} from 'shared/test/mock/config.mock'
+import {MOCK_ACTION_OK} from 'shared/test/mock/reducer.mock'
+
 (function(){
   mockSharedRouteBehavior();
 })();
@@ -29,7 +31,7 @@ export function mockSharedRouteBehavior(){
     	expect(route.parseParams({pathname:"/mockValue/mock2/mockValue2"})).toEqual({mock1:"mockValue",mock3:"mockValue2"});
     });
     it("test url generator",() => {
-   		expect(route.url(MOCK_PAYLOAD,i18n)).toEqual("/MockRoute/MockValue/success");
+   		expect(route.url(MOCK_ACTION_OK,i18n,MOCK_PAYLOAD,MOCK_PARAMS)).toEqual("/MockRoute/MockValue/success?MockParam=MockParam");
     });
 
 

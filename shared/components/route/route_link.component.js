@@ -22,6 +22,10 @@ class RouteLinkComponent extends SpikeComponent {
   get class(){
     return this.props.className;
   }
+  get href(){
+    let route_link = this;
+    return this.router.urlForRoute(route_link.route, route_link.action, route_link.props.payload, route_link.props.params) || '#';
+  }
 
   onRouteLinkClick(event){
     let route_link = this;
@@ -32,7 +36,11 @@ class RouteLinkComponent extends SpikeComponent {
 }
 
 RouteLinkComponent.propTypes = {
-
+  action: React.PropTypes.func.isRequired,
+  className: React.PropTypes.object,
+  route: React.PropTypes.string.isRequired,
+  payload: React.PropTypes.object,
+  params: React.PropTypes.object
 };
 
 module.exports = RouteLinkComponent;

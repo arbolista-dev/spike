@@ -2,9 +2,15 @@
 export const MOCK_ROUTES = {
 	name: "MockRoute",
 	path: "/:mock1?/mock2/:mock3?",
-	url: function(payload,i18n) {
-		return `/${i18n.t('MockRoute')}/${payload._id}/success`
+	url: function(action,i18n,payload,params) {
+		let query = ""
+		if(params && params.mockparam)
+			query = `?MockParam=${params.mockparam}`
+		return `/${i18n.t('MockRoute')}/${payload._id}/success${query}`
 	}
+}
+export const MOCK_PARAMS = {
+	mockparam:"MockParam"
 }
 export const MOCK_PAYLOAD= {
 	_id:"MockValue"

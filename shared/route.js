@@ -67,12 +67,12 @@ export default class Route {
   }
 
   // route should override if it must use state to generate url
-  url(payload, i18n){
+  url(action,i18n,payload,params){
     if (this.data.url){
-      return this.data.url.call(this, payload, i18n);
+      return this.data.url.call(this, action, i18n,payload,params);
     } else {
       let route_path = i18n.t(this.key);
-      return `/${i18n.language}/${route_path}`;
+      return `${route_path}`;
     }
   }
 

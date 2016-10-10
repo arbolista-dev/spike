@@ -21,19 +21,20 @@ export default class Router extends BaseRouter {
     return Router.locale();
   }
 
-  initializeHistory(createHistory, store) {
+  initializeHistory(createHistory, store,fnChange) {
     let router = this;
     router.history = createHistory();
     router.history.listen(router.onLocationChange.bind(router, store));
+    if (fnChange) router.history.listen(fnChange);
   }
 
   // Changing Route
 
   // this will cause onLocationChange to fire with
   // the new location.
-  pushRoute(route_name, action, payload){
+  pushRoute(route_name, action, payload,params){
     let router = this,
-        route = router.routes.getRoute(route_name);
+        route = router.routes.findByName(route_name);
 
     action = {
       type: action ? action.getType() : updateLocation.getType(),
@@ -42,7 +43,8 @@ export default class Router extends BaseRouter {
     };
 
     router.pushHistory({
-      pathname: route.url(action, router.i18n),
+      pathname: route.url(action , router.i18n, payload),
+      search: queryString.stringify(params),
       state: action
     });
   }
@@ -72,7 +74,8 @@ export default class Router extends BaseRouter {
   animateTransition(location){
     if (!location.state || !location.state.transition) return;
     let transition = location.state.transition
-    if (transition === true) animateScroll(window,500);
+    if (transition === true) animateScroll({component:window,time:500});
+    else animateScroll(transition);
   }
 
   scrollTop(component, nextStep){
@@ -87,7 +90,8 @@ export default class Router extends BaseRouter {
       }
   };
 
-  animateScroll(component, time){
+  animateScroll(transition){
+      let {component, time} = transition;
       var DEFAULT_TIME = 1000;
       if(time == null) {
           time = DEFAULT_TIME;

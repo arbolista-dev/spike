@@ -13,11 +13,15 @@ import {MOCK_REDUCER,MOCK_ACTION_OK} from 'shared/test/mock/reducer.mock'
 
 describe('RouteLink component', ()=>{
   var router;
-  it('renders without problems', (done)=>{
-      let route_link =    TestUtils.renderIntoDocument(React.createElement(RouteLink) );
-      expect(route_link.state).toEqual({});
-      
-      done();
+  it('can not be render without application_component', (done)=>{
+  	expect(() => {
+  		let  route_link =TestUtils.renderIntoDocument(React.createElement(RouteLink,{
+  			action:MOCK_ACTION_OK,
+			route:MOCK_ROUTES.name,
+			payload:MOCK_PAYLOAD
+  		}) );
+  	}).toThrow();
+  	done();
   });
   beforeEach(function() {
 		  	router = new Router(i18n,[MOCK_ROUTES]);
