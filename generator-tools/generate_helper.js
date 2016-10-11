@@ -3,7 +3,8 @@ import * as S from 'underscore.string';
 function templateData(componentName) {
   return {
     componentNameLowerCase: S.underscored(componentName),
-    componentNameCamelCase: S.classify(componentName)
+    componentNameCamelCase: S.classify(componentName),
+    componentNameCamelCaseDecapitalized: S.camelize(componentName)
   };
 }
 

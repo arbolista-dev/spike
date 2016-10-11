@@ -5,8 +5,8 @@ import { createReducer } from 'redux-act';
 import {
   ensure<%= componentNameCamelCase %>,
   doEnsure<%= componentNameCamelCase %>,
-  <%= componentNameCamelCase %>Retrieved,
-  <%= componentNameCamelCase %>RetrievalError
+  <%= componentNameCamelCaseDecapitalized %>Retrieved,
+  <%= componentNameCamelCaseDecapitalized %>RetrievalError
 } from 'shared/reducers/<%= componentNameLowerCase %>/<%= componentNameLowerCase %>.actions';
 
 export const INITIAL = Immutable.fromJS({
@@ -32,14 +32,14 @@ const ACTIONS = {
   },
 
   // <%= componentNameCamelCase %> from API response.
-  [<%= componentNameCamelCase %>Retrieved]: (data, res)=>{
+  [<%= componentNameCamelCaseDecapitalized %>Retrieved]: (data, res)=>{
     return data
           .set('data', Immutable.fromJS(res))
           .set('loading', false)
           .set('load_error', false);
   },
 
-  [<%= componentNameCamelCase %>RetrievalError]: (data, _res)=>{
+  [<%= componentNameCamelCaseDecapitalized %>RetrievalError]: (data, _res)=>{
     return data
           .set('loading', false)
           .set('load_error', true);
