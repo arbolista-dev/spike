@@ -5,8 +5,10 @@ export default class ClientStateManager extends SharedStateManager {
 
   // Check localStorage first. If not present check session storage.
   storageValue(key){
-    let value = window.localStorage.getItem(key);
-    if (!value) {
+    let value=null;;
+    if(window.localStorage)
+      value = window.localStorage.getItem(key);
+    if (!value && window.sessionStorage) {
       value = window.sessionStorage.getItem(key);
     }
     return value;
@@ -17,7 +19,11 @@ export default class ClientStateManager extends SharedStateManager {
     if (!value){
       return null;
     }
-    return JSON.parse(value)
+    try {
+      return JSON.parse(value)
+    }catch(e){
+      return null;
+    }
   }
 
   initialState(opts){

@@ -22,7 +22,7 @@ export default class ApplicationComponent extends React.Component {
 		};
 	}
 	componentDidMount() {
-		var component = this;
+		let component = this;
 		component.initializeHistory();
 	}
 

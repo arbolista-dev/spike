@@ -21,7 +21,19 @@ export function mockClientStateManagerBehavior(){
     	window.localStorage = MOCK_LOCALSTORAGE;
     	expect(stateManager.storageParse("mockdata")).toEqual({mockkey:"mockvalue"}); 		
     });
-    	
+    it("try retrieve invalid key",() => {
+      window.localStorage = MOCK_LOCALSTORAGE;
+      window.sessionStorage = MOCK_LOCALSTORAGE;
+      expect(stateManager.storageParse("mock")).toBe(null);     
+    });
+    it("try without localStorage",() => {
+      window.sessionStorage = MOCK_LOCALSTORAGE;
+      expect(stateManager.storageParse("mockdata")).toEqual({mockkey:"mockvalue"});     
+    });
+    it("try retrieve invalid key without sessionStorage",() => {
+      window.localStorage = MOCK_LOCALSTORAGE;
+      expect(stateManager.storageParse("mock")).toBe(null);     
+    });
   });
 
 }
