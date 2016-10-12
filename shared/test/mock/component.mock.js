@@ -1,11 +1,10 @@
 import React from 'react';
 import BaseComponent from 'shared/base_component';
 import { connect } from 'react-redux';
-import template from './component.mock.rt.html'
 export default class Component extends BaseComponent {
 	
   	get template() {
-  		return template;
+  		return () => (<div>Mock</div>);
   	}
 }
 

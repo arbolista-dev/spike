@@ -2,14 +2,18 @@
 
 import React from 'react';
 
-import template from './route_link.rt.html';
 import SpikeComponent from 'shared/base_component';
 
 class RouteLinkComponent extends SpikeComponent {
 
 
   get template(){
-    return template;
+    return () => (
+        <a className={["bh-route-link", this.class]}
+                  href={this.href}
+                  role={this.role}
+                  onClick={this.onRouteLinkClick.bind(this)}>{this.props.children}</a>
+    );
   }
   get route(){
     return this.props.route;
