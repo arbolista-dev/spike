@@ -140,3 +140,36 @@ I need to go through this more thoroughly.
 
 - We'll want to make sure that `<img src=""/>` and any `url()` within css is compiled through webpack both when components are compiled on client and server.
 
+# Routes
+
+We use `path_to_regex` in order to use express-style paths, so the routes must been an array with the fallowing syntax:
+
+```js
+import Route from 'spike/client/route';
+Route route = new Route([
+  {
+    name: "Info",
+    path: "/info"
+  },
+  {
+    name:"Details",
+    path:`/${i18n.t('details')}/:id`,
+    url:(payload,i18n) => {
+      return `/${i18n.t('details')}/${payload.id}`
+    }
+  },
+]);
+
+```
+
+Where:
+
+name
+: Is the route name used when you use ```this.route.pushRoute(route_name)```   in the base_components.
+
+path
+: Is the express-style path expressions 
+
+url (optional)
+: Is the function called by route_link component in order to create the href parameter, if this parameter is not provided path will be used instead.
+
