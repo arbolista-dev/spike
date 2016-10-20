@@ -1,7 +1,7 @@
-import StateManager from 'shared/state_manager'
-import Router from 'shared/router'
-import i18n from 'shared/test/mock/i18nFactory.mock';
-import {MOCK_STORE,MOCK_LOCALSTORAGE,MOCK_COOKIES,MOCK_PAYLOAD,MOCK_LOCATION,MOCK_ROUTES} from '../../shared/test/mock/config.mock'
+import StateManager from 'espina/shared/state_manager'
+import Router from 'espina/shared/router'
+import i18n from 'espina/shared/test/mock/i18nFactory.mock';
+import {MOCK_STORE,MOCK_LOCALSTORAGE,MOCK_COOKIES,MOCK_PAYLOAD,MOCK_LOCATION,MOCK_ROUTES} from 'espina/shared/test/mock/config.mock'
 import {MOCK_REDUCER} from './mock/reducer.mock'
 (function(){
   mockSharedStateManagerBehavior();

@@ -4,12 +4,12 @@ import TestUtils from 'react-addons-test-utils';
 import React from 'react';
 import  createHistory  from 'history/createMemoryHistory';
 import RouteLink from './route_link.component';
-import Router from 'client/router';
-import StateManager from 'client/state_manager'
-import ApplicationComponent from 'shared/application_component'
-import i18n from 'shared/test/mock/i18nFactory.mock';
-import {MOCK_ROUTES,MOCK_STORE,MOCK_PAYLOAD} from 'shared/test/mock/config.mock'
-import {MOCK_REDUCER,MOCK_ACTION_OK} from 'shared/test/mock/reducer.mock'
+import Router from 'espina/client/router';
+import StateManager from 'espina/client/state_manager'
+import ApplicationComponent from 'espina/shared/application_component'
+import i18n from 'espina/shared/test/mock/i18nFactory.mock';
+import {MOCK_ROUTES,MOCK_STORE,MOCK_PAYLOAD} from 'espina/shared/test/mock/config.mock'
+import {MOCK_REDUCER,MOCK_ACTION_OK} from 'espina/shared/test/mock/reducer.mock'
 
 describe('RouteLink component', ()=>{
   var router;

@@ -1,7 +1,7 @@
-import Route from 'shared/route';
-import i18n from 'shared/test/mock/i18nFactory.mock';
-import {MOCK_ROUTES,MOCK_PAYLOAD,MOCK_PARAMS} from 'shared/test/mock/config.mock'
-import {MOCK_ACTION_OK} from 'shared/test/mock/reducer.mock'
+import Route from 'espina/shared/route';
+import i18n from 'espina/shared/test/mock/i18nFactory.mock';
+import {MOCK_ROUTES,MOCK_PAYLOAD,MOCK_PARAMS} from 'espina/shared/test/mock/config.mock'
+import {MOCK_ACTION_OK} from 'espina/shared/test/mock/reducer.mock'
 
 (function(){
   mockSharedRouteBehavior();
@@ -33,8 +33,11 @@ export function mockSharedRouteBehavior(){
     it("test url generator",() => {
    		expect(route.url(MOCK_ACTION_OK,i18n,MOCK_PAYLOAD,MOCK_PARAMS)).toEqual("/MockRoute/MockValue/success?MockParam=MockParam");
     });
-
+    it("test regex",() =>{
+      expect(route.component).not.toBe(null);
+    });
 
   });
+
 
 }

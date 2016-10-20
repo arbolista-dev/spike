@@ -3,7 +3,9 @@
 import Jasmine from 'jasmine'
 import { argv } from 'yargs';
 import jsdom from "jsdom";
-import "app-module-path/register";
+import app from "app-module-path";
+
+app.addPath(__dirname+"/src/")
 
 var window = jsdom.jsdom('<html><head></head><body></body></html>').defaultView;
 
@@ -12,9 +14,9 @@ global.window = window;
 global.document = window.document;
 global.navigator = window.navigator;
 const DEFAULT_FILES = [
-    "server/**/*.test.js",
-    "shared/**/*.test.js",
-    "client/**/*.test.js"
+    "src/espina/server/**/*.test.js",
+    "src/espina/shared/**/*.test.js",
+    "src/espina/client/**/*.test.js"
 ];
 
 var jasmine = new Jasmine(),

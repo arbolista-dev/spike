@@ -7,7 +7,8 @@ export const MOCK_ROUTES = {
 		if(params && params.mockparam)
 			query = `?MockParam=${params.mockparam}`
 		return `/${i18n.t('MockRoute')}/${payload._id}/success${query}`
-	}
+	},
+	component:"espina/shared/test/mock/component.mock"
 }
 export const MOCK_PARAMS = {
 	mockparam:"MockParam"

@@ -1,11 +1,11 @@
 import Component from './mock/component.mock';
-import i18n from 'shared/test/mock/i18nFactory.mock';
+import i18n from 'espina/shared/test/mock/i18nFactory.mock';
 import React from 'react';
 import ReactTestUtils from 'react-addons-test-utils';
-import Router from 'client/router'
-import StateManager from 'client/state_manager'
-import {MOCK_ROUTES,MOCK_STORE} from 'shared/test/mock/config.mock'
-import {MOCK_REDUCER} from 'shared/test/mock/reducer.mock'
+import Router from 'espina/client/router'
+import StateManager from 'espina/client/state_manager'
+import {MOCK_ROUTES,MOCK_STORE} from 'espina/shared/test/mock/config.mock'
+import {MOCK_REDUCER} from 'espina/shared/test/mock/reducer.mock'
 import createHistory  from 'history/createMemoryHistory';
 
 

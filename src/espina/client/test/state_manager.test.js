@@ -1,6 +1,6 @@
-import StateManager from 'client/state_manager'
-import {MOCK_STORE,MOCK_LOCALSTORAGE} from 'shared/test/mock/config.mock'
-import {MOCK_REDUCER} from 'shared/test/mock/reducer.mock'
+import StateManager from 'espina/client/state_manager'
+import {MOCK_STORE,MOCK_LOCALSTORAGE} from 'espina/shared/test/mock/config.mock'
+import {MOCK_REDUCER} from 'espina/shared/test/mock/reducer.mock'
 (function(){
   mockClientStateManagerBehavior();
 })();

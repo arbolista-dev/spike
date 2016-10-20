@@ -1,9 +1,9 @@
-import i18n from 'shared/test/mock/i18nFactory.mock';
-import Router from 'client/router'
-import {MOCK_ROUTES,MOCK_STORE,MOCK_PAYLOAD} from 'shared/test/mock/config.mock'
+import i18n from 'espina/shared/test/mock/i18nFactory.mock';
+import Router from 'espina/client/router'
+import {MOCK_ROUTES,MOCK_STORE,MOCK_PAYLOAD} from 'espina/shared/test/mock/config.mock'
 import  createHistory  from 'history/createMemoryHistory';
-import {MOCK_ACTION_OK,MOCK_REDUCER} from 'shared/test/mock/reducer.mock'
-import StateManager from 'client/state_manager'
+import {MOCK_ACTION_OK,MOCK_REDUCER} from 'espina/shared/test/mock/reducer.mock'
+import StateManager from 'espina/client/state_manager'
 
 
 (function(){
