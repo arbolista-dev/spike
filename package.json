@@ -1,6 +1,6 @@
 {
   "name": "espina",
-  "version": "1.0.0",
+  "version": "1.0.2",
   "description": "Starter kit and generator for ES6 React Isomorphic webapp (React, Redux, Webpack, Universal-Webpack, Karma, Jasmine)",
   "main": "./dist/main.js",
   "scripts": {
@@ -25,7 +25,15 @@
     "express",
     "babel"
   ],
-  "author": "Eric Hulburd <eric@arbol.com> (http://www.arbolista.mx/)",
+  "author": [{
+      "name": "Eric Hulburd",
+      "email": "eric@arbol.com",
+      "url": "http://www.arbolista.mx/"
+    },{
+      "name":"Daniel Cabello",
+      "email": "danyel.cabello@gmail.com",
+      "url":"https://github.com/DKbyo"
+  }],
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/arbolista-dev/spike/issues"
