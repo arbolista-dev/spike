@@ -79,7 +79,7 @@ export default class Route {
       return this.data.url.call(this, action, i18n,payload,params);
     } else {
       let route_path = i18n.t(this.key);
-      return `${route_path}`;
+      return `/${i18n.language}/${route_path}`;
     }
   }
 

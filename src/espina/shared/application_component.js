@@ -2,7 +2,7 @@ import React from 'react';
 import { Provider } from 'react-redux';
 import StateManager from 'espina/shared/state_manager';
 import Router from 'espina/shared/router';
-export default class ApplicationComponent extends React.Component {
+class ApplicationComponent extends React.Component {
 	constructor(props, context) {
 		super(props, context);
   	}
@@ -56,3 +56,5 @@ ApplicationComponent.childContextTypes = {
 	router: React.PropTypes.instanceOf(Router).isRequired,
 	i18n: React.PropTypes.object.isRequired
 }
+
+export default ApplicationComponent;

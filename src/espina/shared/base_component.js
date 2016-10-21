@@ -1,79 +1,89 @@
 import React from 'react';
 import StateManager from 'espina/shared/state_manager'
 import Router from 'espina/shared/router'
+import { connect } from 'react-redux';
 
-export default class BaseComponent extends React.Component {
-	constructor(props, context) {
- 		super(props, context);
-  		this.state = {};
- 	}
-	//Must
-	get state_manager(){
-    	return this.context.state_manager;
-  	}
-  	get i18n(){
-    	return this.context.i18n;
-  	}
-  	get router() {
-  		return this.context.router;
-  	}
+class SpikeComponent extends React.Component {
 
-	get current_route(){
-		return this.router.routes.findByName(this.route_name);
-	}
+		//Must
+		get state_manager(){
+	    	return this.context.state_manager;
+	  	}
+	  	get i18n(){
+	    	return this.context.i18n;
+	  	}
+	  	get router() {
+	  		return this.context.router;
+	  	}
 
-	get route_name() {
-		return this.props.location.get('route_name');
-	}
-	pushRoute(route_name, action, payload){
-		this.router.pushRoute(route_name, action, payload);
-	}
-
-	get logged_in(){
-		if(!this.props.session){
-			return false;
+		get current_route(){
+			return this.router.routes.findByName(this.route_name);
 		}
-      	return !!this.props.session.get('token');
-    }
-    
-    get authenticable() {
-    	return false;
-    }
 
-    render(){
-      let component = this;
-      if (component.logged_in || !component.authenticable){
-        return component.template.call(component);
-      } else {
-        return React.createElement(Login, {
-          login: this.props.login
-        });
-      }
-    }
-
-	get t() {
-		var i18n = this.context.i18n;
-		if (!i18n) {
-			// i18n not present - probably unit test
-			return (key) => {
-				// no translation - used for checking the keys
-				return key;
-			};
-		} else {
-			// TODO: implement language switching
-			// FIXME: getFixedT not finding translations.
-			//return i18n.getFixedT(i18n.language, 'translations');
-			return i18n.t.bind(i18n);
+		get route_name() {
+			return this.props.location.get('route_name');
 		}
-	}
+		pushRoute(route_name, action, payload){
+			this.router.pushRoute(route_name, action, payload);
+		}
+
+		get logged_in(){
+			if(this.props.session) 
+	      		return !!this.props.session.get('token');
+	      	return false;
+	    }
+
+	    render(){
+	      let component = this;
+	      return component.template.call(component);
+
+	    }
+
+		get t() {
+			var i18n = this.context.i18n;
+			if (!i18n) {
+				// i18n not present - probably unit test
+				return (key) => {
+					// no translation - used for checking the keys
+					return key;
+				};
+			} else {
+				// TODO: implement language switching
+				// FIXME: getFixedT not finding translations.
+				//return i18n.getFixedT(i18n.language, 'translations');
+				return i18n.t.bind(i18n);
+			}
+		}
+	
 }
 
-BaseComponent.propTypes = {
-	session: React.PropTypes.object,
-	location: React.PropTypes.object
-}
-BaseComponent.contextTypes = {
+SpikeComponent.contextTypes = {
 	state_manager: React.PropTypes.instanceOf(StateManager),
 	router: React.PropTypes.instanceOf(Router),
 	i18n: React.PropTypes.object
 }
+
+export default SpikeComponent;
+
+const connectSpike = (baseComponent,mapStateToPropsComponent={},mapDispatchToPropsComponent) => {
+
+	const mapStateToProps = (state) => {
+	  return Object.assign({
+	    session: state['session'],
+	    location: state['location']
+	  },mapStateToPropsComponent(state));
+	}
+	if(mapDispatchToPropsComponent) {
+		connect(
+		  mapStateToProps,
+		  mapDispatchToPropsComponent
+		)(baseComponent);
+	}else {
+		connect(
+		  mapStateToProps
+		)(baseComponent);
+	}
+	return baseComponent;
+}
+
+export {connectSpike};
