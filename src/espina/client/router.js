@@ -5,16 +5,6 @@ import extend from 'extend';
 import BaseRouter from 'espina/shared/router'
 import { createAction } from 'redux-act';
 
-const updateLocation = createAction('Default action for updating url.');
-
-export { updateLocation };
-
-
-const DEFAULT_UPDATE_LOCATION_ACTION = {
-  type: updateLocation.getType(),
-  payload: {}
-};
-
 export default class Router extends BaseRouter {
 
   get locale(){
@@ -37,7 +27,7 @@ export default class Router extends BaseRouter {
         route = router.routes.findByName(route_name);
 
     action = {
-      type: action ? action.getType() : updateLocation.getType(),
+      type: action ? action.getType() : 'UPDATE_LOCATION',
       payload: payload,
       no_scroll: payload ? payload.no_scroll : false
     };
@@ -102,10 +92,6 @@ export default class Router extends BaseRouter {
           }
       })();
   };
-
-  get default_update_location_action(){
-    return extend(true, {}, DEFAULT_UPDATE_LOCATION_ACTION);
-  }
 
   scrollForNewLocation(location){
     return !location.state || !location.state.no_scroll
