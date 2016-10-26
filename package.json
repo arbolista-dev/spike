@@ -75,6 +75,6 @@
     "react-addons-test-utils": "^15.3.2"
   },
   "bin": {
-    "spike": "./shell/spike.js"
+    "espina": "./shell/espina.js"
   }
 }

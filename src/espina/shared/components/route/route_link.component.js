@@ -47,4 +47,4 @@ RouteLinkComponent.propTypes = {
   params: React.PropTypes.object
 };
 
-module.exports = RouteLinkComponent;
+export default RouteLinkComponent;

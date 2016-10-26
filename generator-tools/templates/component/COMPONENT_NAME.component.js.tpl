@@ -3,7 +3,7 @@
 import React from 'react';
 
 import template from './<%= componentNameLowerCase %>.rt.html';
-import SpikeComponent from 'spike/shared/base_component';
+import SpikeComponent from 'espina/shared/base_component';
 
 class <%=  componentNameCamelCase %>Component extends SpikeComponent {
 
@@ -17,4 +17,4 @@ class <%=  componentNameCamelCase %>Component extends SpikeComponent {
 
 };
 
-module.exports = <%=  componentNameCamelCase %>Component;
+export default <%=  componentNameCamelCase %>Component;
