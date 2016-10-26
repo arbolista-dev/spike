@@ -25,15 +25,22 @@
     "express",
     "babel"
   ],
-  "author": [{
+  "author": {
+    "name": "Arbolista Development",
+    "website": "http://www.arbolista.mx"
+  },
+  "contributors": [
+    {
       "name": "Eric Hulburd",
       "email": "eric@arbol.com",
       "url": "http://www.arbolista.mx/"
-    },{
-      "name":"Daniel Cabello",
+    },
+    {
+      "name": "Daniel Cabello",
       "email": "danyel.cabello@gmail.com",
-      "url":"https://github.com/DKbyo"
-  }],
+      "url": "https://github.com/DKbyo"
+    }
+  ],
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/arbolista-dev/spike/issues"
@@ -48,6 +55,7 @@
     "react": "0.14.7",
     "react-redux": "4.4.x",
     "redux": "3.5.x",
+    "redux-loop": "^2.2.2",
     "underscore.string": "^3.3.4",
     "yargs": "^6.0.0"
   },
