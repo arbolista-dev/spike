@@ -21,7 +21,7 @@ import RouteLink from 'spike/shared/components/route/route.component.js';
 Should generate components within `shared/components` as such:
 
 ```sh
-spike generate component Example --name --where utils -t -s -rt
+spike generate component Example --where utils -t -s --rt
 ```
 
 This would generate:
@@ -32,22 +32,6 @@ shared/components/utils/example
   example.scss
   example.test
   example.rt.html
-```
-
-Similarly:
-
-```sh
-spike generate route --name  Route1
-```
-
-This would generate:
-
-```
-shared/components/routes/route1
-  route.component.js
-  route.scss
-  route.test.js
-  route.rt.html
 ```
 
 ### Options
