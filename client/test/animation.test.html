@@ -1,0 +1,57 @@
+<html>
+<head>
+	<style>
+		div{
+			width: 100%;
+			height:2000px;
+		}
+		button {
+			position: relative;
+			bottom:10px;
+		}
+	</style>
+	<script>
+	    var scrollTop = function(component, nextStep){
+	        if(nextStep == null) {
+	            return component.scrollY != null ? component.scrollY : component.scrollTop;
+	        } else if(nextStep <= 0) {
+	            component.scrollTo ? component.scrollTo(0, 0):component.scrollTop = 0;
+	            return 0;
+	        } else {
+	            component.scrollTo ? component.scrollTo(0, nextStep) : component.scrollTop = nextStep;
+	            return nextStep;
+	        }
+	    };
+
+	    var animateScroll = function(component, time){
+	        var DEFAULT_TIME = 1000;
+	        if(time == null) {
+	            time = DEFAULT_TIME;
+	        }
+	        var originY = scrollTop(component);
+	        var currentY = originY;
+	        var originSpeed = originY / (time / 60);
+	        var currentSpeed;
+	        (function operate(){
+	            currentSpeed = originSpeed;
+	            currentY -= currentSpeed;
+	            if(scrollTop(component, currentY) !== 0) {
+	                window.requestAnimationFrame.call(window, operate);
+	            }
+	        })();
+	    };
+	</script>
+	<script>
+		function animateTransition() {
+			var transition = {css: {scrollTop: 0}, speed: 'slow'};
+			//window.jQuery("html, body").animate(transition.css, transition.speed);
+			animateScroll(window,500);
+		}
+	</script>
+</head>
+<body>
+	<div>Please scroll</div>
+	<a href="http://google.com" onclick="animateTransition()">Try Animate and redirect</a>
+	<a href="#" onclick="animateTransition()">Animate</a>
+</body>
+</html>
