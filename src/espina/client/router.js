@@ -1,9 +1,7 @@
 /*global window NODE_ENV*/
-import queryString from 'query-string';
-import extend from 'extend';
-
+import {stringify} from 'query-string';
 import BaseRouter from 'espina/shared/router'
-import { createAction } from 'redux-act';
+
 
 export default class Router extends BaseRouter {
 
@@ -34,7 +32,7 @@ export default class Router extends BaseRouter {
 
     router.pushHistory({
       pathname: route.url(action , router.i18n, payload),
-      search: queryString.stringify(params),
+      search: stringify(params),
       state: action
     });
   }

@@ -1,7 +1,6 @@
 import React from 'react';
 import StateManager from 'espina/shared/state_manager'
-import Router from 'espina/shared/router'
-import { connect } from 'react-redux';
+import Router from 'espina/shared/router';
 
 class SpikeComponent extends React.Component {
 
@@ -64,26 +63,3 @@ SpikeComponent.contextTypes = {
 }
 
 export default SpikeComponent;
-
-const connectSpike = (baseComponent,mapStateToPropsComponent={},mapDispatchToPropsComponent) => {
-
-	const mapStateToProps = (state) => {
-	  return Object.assign({
-	    session: state['session'],
-	    location: state['location']
-	  },mapStateToPropsComponent(state));
-	}
-	if(mapDispatchToPropsComponent) {
-		connect(
-		  mapStateToProps,
-		  mapDispatchToPropsComponent
-		)(baseComponent);
-	}else {
-		connect(
-		  mapStateToProps
-		)(baseComponent);
-	}
-	return baseComponent;
-}
-
-export {connectSpike};

@@ -9,7 +9,7 @@ class RouteLinkComponent extends SpikeComponent {
 
   get template(){
     return () => (
-        <a className={["bh-route-link", this.class]}
+        <a className={[this.class]}
                   href={this.href}
                   role={this.role}
                   onClick={this.onRouteLinkClick.bind(this)}>{this.props.children}</a>
