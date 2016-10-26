@@ -20,7 +20,7 @@ import RouteLink from 'espina/shared/components/route/route_link.component.js';
 Should generate components within `shared/components` as such:
 
 ```sh
-espina generate component Example --name --where utils -t -s -rt
+espina generate component Example --where utils -t -s --rt
 ```
 
 This would generate:
@@ -31,22 +31,6 @@ shared/components/utils/example
   example.scss
   example.test
   example.rt.html
-```
-
-Similarly:
-
-```sh
-espina generate route --name  Route1
-```
-
-This would generate:
-
-```
-shared/components/routes/route1
-  route.component.js
-  route.scss
-  route.test.js
-  route.rt.html
 ```
 
 ### Options
