@@ -39,7 +39,7 @@ export default class Route {
   getMatch(pathname) {
     let route = this;
     if (route.data.path instanceof Array) {
-      var match=null;
+      let match=null;
       route.data.path.some((r) => {
         match= this.match(r,pathname);
         return match != null;
@@ -51,11 +51,19 @@ export default class Route {
   }
   //Match a single path
   match(path,pathname) {
-      var keys=[];
-      var token = pathToRegexp(path,keys).exec(pathname);
-      return token == null ? null: {
-        token:token,
-        keys:keys
+      let keys=[];
+      if(path instanceof RegExp){
+        let match = pathname.match(path);
+        return !match ? null :  {
+          token:match,
+          keys:[]
+        }
+      } else {
+        let token = pathToRegexp(path,keys).exec(pathname);
+        return token == null ? null: {
+          token:token,
+          keys:keys
+        }
       }
   }
 
