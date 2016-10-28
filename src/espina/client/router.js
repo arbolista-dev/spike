@@ -1,7 +1,7 @@
 /*global window NODE_ENV*/
 import {stringify} from 'query-string';
 import BaseRouter from 'espina/shared/router'
-
+import Scroll from "scroll-js" 
 
 export default class Router extends BaseRouter {
 
@@ -20,24 +20,27 @@ export default class Router extends BaseRouter {
 
   // this will cause onLocationChange to fire with
   // the new location.
-  pushRoute(route_name, action, payload,params){
+  pushRoute(route_name, action, payload,params,hash){
     let router = this,
         route = router.routes.findByName(route_name);
 
     action = {
       type: action ? action.getType() : 'UPDATE_LOCATION',
       payload: payload,
-      no_scroll: payload ? payload.no_scroll : false
+      no_scroll: payload ? payload.no_scroll : false,
+      transition:true
     };
 
     router.pushHistory({
-      pathname: route.url(action , router.i18n, payload),
+      pathname: route.url(action , router.i18n, payload,hash),
       search: stringify(params),
-      state: action
+      state: action,
+      hash: hash,
     });
   }
 
   pushHistory(location){
+
     this.history.push(location);
   }
 
@@ -54,41 +57,23 @@ export default class Router extends BaseRouter {
   }
 
   animateTransition(location){
+    let router = this;
     if (!location.state || !location.state.transition) return;
     let transition = location.state.transition
-    if (transition === true) animateScroll({component:window,time:500});
-    else animateScroll(transition);
+    if (transition === true) {
+      let component = document.getElementById(location.hash.replace("#",""));
+      router.animateScroll(component);
+    }
+    else router.animateScroll(transition);
   }
 
-  scrollTop(component, nextStep){
-      if(nextStep == null) {
-          return component.scrollY != null ? component.scrollY : component.scrollTop;
-      } else if(nextStep <= 0) {
-          component.scrollTo ? component.scrollTo(0, 0):component.scrollTop = 0;
-          return 0;
-      } else {
-          component.scrollTo ? component.scrollTo(0, nextStep) : component.scrollTop = nextStep;
-          return nextStep;
-      }
-  };
-
-  animateScroll(transition){
-      let {component, time} = transition;
-      var DEFAULT_TIME = 1000;
-      if(time == null) {
-          time = DEFAULT_TIME;
-      }
-      var originY = scrollTop(component);
-      var currentY = originY;
-      var originSpeed = originY / (time / 60);
-      var currentSpeed;
-      (function operate(){
-          currentSpeed = originSpeed;
-          currentY -= currentSpeed;
-          if(scrollTop(component, currentY) !== 0) {
-               window.requestAnimationFrame.call(window, operate);
-          }
-      })();
+  animateScroll(component){
+      let router = this;
+      var scroll = new Scroll(document.body);
+      if(!component)
+        scroll.to(0, 0);
+      else 
+        scroll.toElement(component)
   };
 
   scrollForNewLocation(location){

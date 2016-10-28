@@ -82,7 +82,7 @@ export default class Route {
   }
 
   // route should override if it must use state to generate url
-  url(action,i18n,payload,params){
+  url(action,i18n,payload,params,hash){
     if (this.data.url){
       return this.data.url.call(this, action, i18n,payload,params);
     } else {

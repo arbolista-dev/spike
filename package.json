@@ -2,7 +2,6 @@
   "name": "espina",
   "version": "1.0.2",
   "description": "Starter kit and generator for ES6 React Isomorphic webapp (React, Redux, Webpack, Universal-Webpack, Karma, Jasmine)",
-  "main": "./dist/main.js",
   "scripts": {
     "test": "BABEL_DISABLE_CACHE=1 babel-node test.js",
     "build": "babel src/espina --out-dir . --ignore mock.js,test.js,test.html",
@@ -52,10 +51,11 @@
     "immutable": "^3.8.1",
     "path-to-regexp": "^1.6.0",
     "query-string": "^4.2.3",
-    "react": "0.14.7",
-    "react-redux": "4.4.x",
-    "redux": "3.5.x",
+    "react": "^15.3.2",
+    "react-redux": "^4.4.5",
+    "redux": "^3.6.0",
     "redux-loop": "^2.2.2",
+    "scroll-js": "^1.2.0",
     "underscore.string": "^3.3.4",
     "yargs": "^6.0.0"
   },

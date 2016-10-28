@@ -22,8 +22,8 @@ class SpikeComponent extends React.Component {
 		get route_name() {
 			return this.props.location.get('route_name');
 		}
-		pushRoute(route_name, action, payload){
-			this.router.pushRoute(route_name, action, payload);
+		pushRoute(route_name, action, payload,params,hash){
+			this.router.pushRoute(route_name, action, payload,params,hash);
 		}
 
 		get logged_in(){
