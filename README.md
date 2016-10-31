@@ -1,17 +1,16 @@
 # Spike Classes
 
 ```js
-import ClientStateManager from 'spike/client/state_manager';
-import ServerStateManager from 'spike/server/state_manager';
-import ClientRouter from 'spike/client/router';
-import ServerRouter from 'spike/server/state_manager';
+import ClientStateManager from 'espina/client/state_manager';
+import ServerStateManager from 'espina/server/state_manager';
+import ClientRouter from 'espina/client/router';
+import ServerRouter from 'espina/server/state_manager';
 
-import ApplicationComponent from 'spike/shared/application_component';
-import BaseComponent from 'spike/shared/base_component'; // This will set context with i18n.
+import ApplicationComponent from 'espina/shared/application_component';
+import BaseComponent from 'espina/shared/base_component'; 
+import Route from 'espina/shared/route.js';
 
-import Route from 'spike/shared/route.js';
-
-import RouteLink from 'spike/shared/components/route/route.component.js';
+import RouteLink from 'espina/shared/components/route/route_link.component.js';
 ```
 
 # Generators
@@ -21,7 +20,7 @@ import RouteLink from 'spike/shared/components/route/route.component.js';
 Should generate components within `shared/components` as such:
 
 ```sh
-spike generate component Example --name --where utils -t -s -rt
+espina generate component Example --where utils -t -s --rt
 ```
 
 This would generate:
@@ -32,22 +31,6 @@ shared/components/utils/example
   example.scss
   example.test
   example.rt.html
-```
-
-Similarly:
-
-```sh
-spike generate route --name  Route1
-```
-
-This would generate:
-
-```
-shared/components/routes/route1
-  route.component.js
-  route.scss
-  route.test.js
-  route.rt.html
 ```
 
 ### Options
@@ -70,12 +53,10 @@ shared/reducers/user
   user.reducer.test.js
 ```
 
-I have examples of each of these files we can use for templates.
-
 ## Application Generator
 
 ```sh
-spike generate app
+espina generate app
 ```
 
 This would generate the following structure.
@@ -125,28 +106,22 @@ I will need to think through options to configure:
 We will want to provide easy build commands:
 
 ```sh
-NODE_ENV=production spike build
+NODE_ENV=production espina build
 ```
 
 This should build client assets (app.js, style.css, as well as a server build in build/production/server). See this article.
 
 ```sh
-NODE_ENV=development spike run
+NODE_ENV=development espina run
 ```
-
-I need to go through this more thoroughly.
-
-# Other Requirements
-
-- We'll want to make sure that `<img src=""/>` and any `url()` within css is compiled through webpack both when components are compiled on client and server.
 
 # Routes
 
 We use `path_to_regex` in order to use express-style paths, so the routes must been an array with the fallowing syntax:
 
 ```js
-import Route from 'spike/client/route';
-Route route = new Route([
+import Router from 'spike/client/router';
+Router route = new Router(i18m,[
   {
     name: "Info",
     path: "/info"

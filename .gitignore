@@ -4,4 +4,8 @@ build/
 server/bin/
 bin/
 npm-debug.log
+shared/
+server/
+client/
+*.tgz
 *.rt.js

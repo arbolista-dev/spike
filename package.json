@@ -1,14 +1,15 @@
 {
-  "name": "spike",
-  "version": "1.0.0",
+  "name": "espina",
+  "version": "1.0.2",
   "description": "Starter kit and generator for ES6 React Isomorphic webapp (React, Redux, Webpack, Universal-Webpack, Karma, Jasmine)",
-  "main": "run.js",
   "scripts": {
-    "test": "BABEL_DISABLE_CACHE=1 babel-node test.js"
+    "test": "BABEL_DISABLE_CACHE=1 babel-node test.js",
+    "build": "babel src/espina --out-dir . --ignore mock.js,test.js,test.html",
+    "prepublish": "npm run build"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/arbolista-dev/spike-docs.git"
+    "url": "git+https://github.com/arbolista-dev/spike.git"
   },
   "keywords": [
     "react",
@@ -23,12 +24,27 @@
     "express",
     "babel"
   ],
-  "author": "Eric Hulburd <eric@arbol.com> (http://www.arbolista.mx/)",
+  "author": {
+    "name": "Arbolista Development",
+    "website": "http://www.arbolista.mx"
+  },
+  "contributors": [
+    {
+      "name": "Eric Hulburd",
+      "email": "eric@arbol.com",
+      "url": "http://www.arbolista.mx/"
+    },
+    {
+      "name": "Daniel Cabello",
+      "email": "danyel.cabello@gmail.com",
+      "url": "https://github.com/DKbyo"
+    }
+  ],
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/arbolista-dev/spike-docs/issues"
+    "url": "https://github.com/arbolista-dev/spike/issues"
   },
-  "homepage": "https://github.com/arbolista-dev/spike-docs#readme",
+  "homepage": "https://github.com/arbolista-dev/spike#readme",
   "dependencies": {
     "commonjs": "0.0.1",
     "history": "^4.3.0",
@@ -37,10 +53,9 @@
     "query-string": "^4.2.3",
     "react": "^15.3.2",
     "react-redux": "^4.4.5",
-    "react-templates": "^0.5.4",
     "redux": "^3.6.0",
-    "redux-act": "^1.0.0",
     "redux-loop": "^2.2.2",
+    "scroll-js": "^1.2.0",
     "underscore.string": "^3.3.4",
     "yargs": "^6.0.0"
   },
@@ -50,8 +65,16 @@
     "babel-plugin-react-templates": "^1.2.0",
     "babel-preset-es2015": "^6.16.0",
     "babel-preset-react": "^6.16.0",
+    "babel-register": "^6.16.3",
+    "gulp": "^3.9.1",
+    "gulp-foreach": "^0.1.0",
+    "gulp-rename": "^1.2.2",
+    "gulp-template": "^4.0.0",
     "jasmine": "^2.5.2",
     "jsdom": "^9.6.0",
     "react-addons-test-utils": "^15.3.2"
+  },
+  "bin": {
+    "espina": "./shell/espina.js"
   }
 }
