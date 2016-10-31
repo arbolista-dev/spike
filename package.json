@@ -3,7 +3,9 @@
   "version": "1.0.2",
   "description": "Starter kit and generator for ES6 React Isomorphic webapp (React, Redux, Webpack, Universal-Webpack, Karma, Jasmine)",
   "scripts": {
-    "test": "BABEL_DISABLE_CACHE=1 babel-node test.js",
+    "test": "npm run test_client && npm run test_server",
+    "test_client": "BABEL_DISABLE_CACHE=1 NODE_ENV=test karma start",
+    "test_server": "BABEL_DISABLE_CACHE=1 NODE_ENV=test babel-node test.server.js",
     "build": "babel src/espina --out-dir . --ignore mock.js,test.js,test.html",
     "prepublish": "npm run build"
   },
@@ -71,7 +73,13 @@
     "gulp-rename": "^1.2.2",
     "gulp-template": "^4.0.0",
     "jasmine": "^2.5.2",
-    "jsdom": "^9.6.0",
+    "karma": "0.13.x",
+    "karma-jasmine": "0.3.x",
+    "karma-phantomjs-launcher": "1.0.x",
+    "karma-phantomjs-shim": "1.2.x",
+    "karma-sourcemap-loader": "0.3.x",
+    "karma-spec-reporter": "0.0.x",
+    "karma-webpack": "1.7.x",
     "react-addons-test-utils": "^15.3.2"
   },
   "bin": {
