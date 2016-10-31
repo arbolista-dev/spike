@@ -4,7 +4,7 @@ function templateData(componentName) {
   return {
     componentNameLowerCase: S.underscored(componentName),
     componentNameCamelCase: S.classify(componentName),
-    componentNameCamelCaseDecapitalized: S.camelize(componentName)
+    componentNameCamelCaseDecapitalized: S.camelize(componentName),
   };
 }
 
@@ -16,5 +16,5 @@ function translateFileName(fileName, componentName, templateName) {
 
 export default {
   data: templateData,
-  fileName: translateFileName
+  fileName: translateFileName,
 };
