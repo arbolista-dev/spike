@@ -4,62 +4,64 @@ import Router from 'espina/shared/router';
 
 class SpikeComponent extends React.Component {
 
-		// Must
-  get state_manager() {
-	    	return this.context.state_manager;
-	  	}
-	  	get i18n() {
-	    	return this.context.i18n;
-	  	}
-	  	get router() {
-	  		return this.context.router;
-	  	}
-
-  get current_route() {
-    return this.router.routes.findByName(this.route_name);
+  // Must
+  get stateManager() {
+    return this.context.stateManager;
+  }
+  get i18n() {
+    return this.context.i18n;
+  }
+  get router() {
+    return this.context.router;
   }
 
-  get route_name() {
-    return this.props.location.get('route_name');
-  }
-  pushRoute(route_name, action, payload, params, hash) {
-    this.router.pushRoute(route_name, action, payload, params, hash);
+  get currentRoute() {
+    return this.router.routes.findByName(this.routeName);
   }
 
-  get logged_in() {
-    if (this.props.session)	      		{
+  get routeName() {
+    return this.props.location.get('routeName');
+  }
+  pushRoute(routeName, action, payload, params, hash) {
+    this.router.pushRoute(routeName, action, payload, params, hash);
+  }
+
+  get loggedIn() {
+    if (this.props.session) {
       return !!this.props.session.get('token');
     }
-	      	return false;
-	    }
-
-	    render() {
-	      const component = this;
-	      return component.template.call(component);
-	    }
+    return false;
+  }
 
   get t() {
     const i18n = this.context.i18n;
     if (!i18n) {
-				// i18n not present - probably unit test
-      return key =>
-					// no translation - used for checking the keys
-					 key
-				;
-    } else {
-				// TODO: implement language switching
-				// FIXME: getFixedT not finding translations.
-				// return i18n.getFixedT(i18n.language, 'translations');
-      return i18n.t.bind(i18n);
+      // i18n not present - probably unit test
+      // no translation - used for checking the keys
+      return key => key;
     }
+    // TODO: implement language switching
+    // FIXME: getFixedT not finding translations.
+    // return i18n.getFixedT(i18n.language, 'translations');
+    return i18n.t.bind(i18n);
+  }
+
+  render() {
+    const component = this;
+    return component.template.call(component);
   }
 
 }
 
 SpikeComponent.contextTypes = {
-  state_manager: React.PropTypes.instanceOf(StateManager),
+  stateManager: React.PropTypes.instanceOf(StateManager),
   router: React.PropTypes.instanceOf(Router),
   i18n: React.PropTypes.object,
+};
+
+SpikeComponent.propTypes = {
+  session: React.PropTypes.object,
+  location: React.PropTypes.object,
 };
 
 export default SpikeComponent;

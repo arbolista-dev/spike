@@ -2,21 +2,12 @@ import React from 'react';
 import { Provider } from 'react-redux';
 import StateManager from 'espina/shared/state_manager';
 import Router from 'espina/shared/router';
-class ApplicationComponent extends React.Component {
-  constructor(props, context) {
-    super(props, context);
-  	}
-  get router() {
-    return this.props.router;
-  }
 
-  get state_manager() {
-		 return this.props.state_manager;
-  }
+class ApplicationComponent extends React.Component {
 
   getChildContext() {
     return {
-      state_manager: this.state_manager,
+      stateManager: this.stateManager,
       router: this.router,
       i18n: this.props.i18n,
     };
@@ -26,33 +17,40 @@ class ApplicationComponent extends React.Component {
     component.initializeHistory();
   }
 
+  get stateManager() {
+    return this.props.stateManager;
+  }
+
+  get router() {
+    return this.props.router;
+  }
+
   initializeHistory() {
-    let component = this,
-      createHistory = component.props.createHistory;
-    component.router.initializeHistory(createHistory, component.state_manager.store);
+    const component = this;
+    component.router.initializeHistory(this.props.createHistory, component.stateManager.store);
   }
 
   render() {
     return React.createElement(Provider,
       {
-        store: this.state_manager.store,
+        store: this.stateManager.store,
       },
-			React.createElement(this.props.rootComponent, this.props.rootComponentProps || {})
-		);
+    React.createElement(this.props.rootComponent, this.props.rootComponentProps || {}));
   }
 }
 
 ApplicationComponent.propTypes = {
-  state_manager: React.PropTypes.instanceOf(StateManager).isRequired,
+  stateManager: React.PropTypes.instanceOf(StateManager).isRequired,
   router: React.PropTypes.instanceOf(Router).isRequired,
   i18n: React.PropTypes.object.isRequired,
-		// only required in browser
-  createHistory: React.PropTypes.func,
-  rootComponent: React.PropTypes.func,
+  // only required in browser
+  createHistory: React.PropTypes.func.isRequired,
+  rootComponent: React.PropTypes.func.isRequired,
+  rootComponentProps: React.PropTypes.object,
 };
 
 ApplicationComponent.childContextTypes = {
-  state_manager: React.PropTypes.instanceOf(StateManager).isRequired,
+  stateManager: React.PropTypes.instanceOf(StateManager).isRequired,
   router: React.PropTypes.instanceOf(Router).isRequired,
   i18n: React.PropTypes.object.isRequired,
 };

@@ -1,13 +1,9 @@
-/* global window NODE_ENV*/
+/* eslint-env node, browser */
 import { stringify } from 'query-string';
 import BaseRouter from 'espina/shared/router';
-import Scroll from 'scroll-js';
+import smoothScroll from 'smooth-scroll';
 
 export default class Router extends BaseRouter {
-
-  get locale() {
-    return Router.locale();
-  }
 
   initializeHistory(createHistory, store, fnChange) {
     const router = this;
@@ -20,21 +16,21 @@ export default class Router extends BaseRouter {
 
   // this will cause onLocationChange to fire with
   // the new location.
-  pushRoute(route_name, action, payload, params, hash) {
-    let router = this,
-      route = router.routes.findByName(route_name);
+  pushRoute(routeName, action, payload, params, hash) {
+    const router = this;
+    const route = router.routes.findByName(routeName);
 
-    action = {
-      type: action ? action.getType() : 'UPDATE_LOCATION',
+    const newAction = {
+      type: action ? action.type : 'UPDATE_LOCATION',
       payload,
       no_scroll: payload ? payload.no_scroll : false,
       transition: true,
     };
 
     router.pushHistory({
-      pathname: route.url(action, router.i18n, payload, hash),
+      pathname: route.url(newAction, router.i18n, payload, hash),
       search: stringify(params),
-      state: action,
+      state: newAction,
       hash,
     });
   }
@@ -43,47 +39,42 @@ export default class Router extends BaseRouter {
     this.history.push(location);
   }
 
-  onLocationChange(store, new_location) {
+  onLocationChange(store, location) {
     const router = this;
+    const newLocation = location;
     // NOTE: You can pass true to scrollTop property (ie Integer).
-    router.animateTransition(new_location);
-    const action = new_location.state || {};
+    Router.animateTransition(newLocation);
+    const action = newLocation.state || {};
     action.type = action.type || 'UPDATE_LOCATION';
-    if (!new_location.pathname.startsWith('/')) {
-      new_location.pathname = `/${new_location.pathname}`;
+    if (!newLocation.pathname.startsWith('/')) {
+      newLocation.pathname = `/${newLocation.pathname}`;
     }
-    action.location = router.parseLocation(new_location);
+    action.location = router.parseLocation(newLocation);
     store.dispatch(action);
   }
 
-  animateTransition(location) {
-    const router = this;
+  static animateTransition(location) {
     if (!location.state || !location.state.transition) return;
     const transition = location.state.transition;
     if (transition === true) {
       const component = document.getElementById(location.hash.replace('#', ''));
-      router.animateScroll(component);
-    } else router.animateScroll(transition);
+      Router.animateScroll(component);
+    } else Router.animateScroll(transition);
   }
 
-  animateScroll(component) {
-    const router = this;
-    const scroll = new Scroll(document.body);
+  static animateScroll(component) {
+    smoothScroll.init();
     if (!component) {
-      scroll.to(0, 0);
+      smoothScroll.animateScroll(0);
     } else {
-      scroll.toElement(component);
+      smoothScroll.animateScroll(component);
     }
-  }
-
-  scrollForNewLocation(location) {
-    return !location.state || !location.state.no_scroll;
   }
 
   // Use this when createHistory is a hash history.
   static currentHashLocation() {
-    let hash = window.location.hash,
-      match = hash.match(/^#([^\?]+)(\?.+)?/);
+    const hash = window.location.hash;
+    const match = hash.match(/^#([^\\?]+)(\?.+)?/);
     return {
       pathname: match ? match[1] : '',
       query: match && match[2] ? match[2] : '',
@@ -91,8 +82,8 @@ export default class Router extends BaseRouter {
   }
 
   static locale() {
-    let pathname = window.location.pathname,
-      match = pathname.match(new RegExp('^\/?(\\w{2})(\/|$)'));
+    const pathname = window.location.pathname;
+    const match = pathname.match(new RegExp('^/?(\\w{2})(/|$)'));
 
     if (!match) { return 'en'; }
     return match[1];

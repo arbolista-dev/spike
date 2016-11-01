@@ -1,3 +1,4 @@
+/* eslint import/no-extraneous-dependencies: ["error", {"devDependencies": true}] */
 // this is run via "npm test".
 
 import Jasmine from 'jasmine';
@@ -19,22 +20,20 @@ const DEFAULT_FILES = [
   'src/espina/client/**/*.test.js',
 ];
 
-let jasmine = new Jasmine(),
-  files = argv.files ? interpretFiles(argv.files) : DEFAULT_FILES;
+function interpretFiles(ifiles) {
+  return ifiles.split(',').map((dir) => {
+    if (/\.test\.js$/.test(dir)) {
+      return dir;
+    }
+    return `${dir}/**/*.test.js`;
+  });
+}
+
+const jasmine = new Jasmine();
+const files = argv.files ? interpretFiles(argv.files) : DEFAULT_FILES;
 jasmine.loadConfig({
   spec_dir: './',
   spec_files: files,
 
 });
 jasmine.execute();
-
-
-function interpretFiles(files) {
-  return argv.files.split(',').map((dir) => {
-    if (/\.test\.js$/.test(dir)) {
-      return dir;
-    } else {
-      return `${dir}/**/*.test.js`;
-    }
-  });
-}

@@ -6,20 +6,20 @@ import { fromJS } from 'immutable';
 
 export default class SharedStateManager {
 
-  initializeStore(initial_state, reducer) {
-    this.store = createStore(reducer, initial_state, install());
+  initializeStore(initialState, reducer) {
+    this.store = createStore(reducer, initialState, install());
   }
 
   // overridden in client state_manager.
-  initialState(opts, cookies) {
+  static initialState(opts, cookies) {
     return Object.assign({
       session: fromJS({ token: cookies.token || null }),
     }, opts);
   }
 
-  parseInitialLocation(initial_location, router) {
-    const location_state = router.parseLocation(initial_location);
-    return location_state;
+  static parseInitialLocation(initialLocation, router) {
+    const locationState = router.parseLocation(initialLocation);
+    return locationState;
   }
 
 }

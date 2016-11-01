@@ -3,7 +3,7 @@
   "version": "1.0.2",
   "description": "Starter kit and generator for ES6 React Isomorphic webapp (React, Redux, Webpack, Universal-Webpack, Karma, Jasmine)",
   "scripts": {
-    "test": "BABEL_DISABLE_CACHE=1 babel-node test.js && eslint --fix .",
+    "test": "BABEL_DISABLE_CACHE=1 babel-node test.js && eslint --fix test.js src",
     "build": "babel src/espina --out-dir . --ignore mock.js,test.js,test.html",
     "lint": "eslint",
     "prepublish": "npm run build"
@@ -48,11 +48,12 @@
   "homepage": "https://github.com/arbolista-dev/spike#readme",
   "dependencies": {
     "commonjs": "0.0.1",
-    "eslint-config-airbnb": "12.0.x",
+    "eslint": "3.9.x",
+    "eslint-config-airbnb": "^12.0.0",
+    "eslint-import-resolver-node": "^0.2.3",
     "eslint-plugin-import": "1.16.x",
     "eslint-plugin-jsx-a11y": "2.2.x",
     "eslint-plugin-react": "6.3.x",
-    "eslint": "3.9.x",
     "history": "^4.3.0",
     "immutable": "^3.8.1",
     "path-to-regexp": "^1.6.0",
@@ -62,7 +63,7 @@
     "react-redux": "4.4.x",
     "redux": "^3.6.0",
     "redux-loop": "^2.2.2",
-    "scroll-js": "^1.2.0",
+    "smooth-scroll": "github:cferdinandi/smooth-scroll",
     "underscore.string": "^3.3.4",
     "yargs": "^6.0.0"
   },

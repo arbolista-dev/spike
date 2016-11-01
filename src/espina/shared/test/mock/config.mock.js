@@ -7,7 +7,7 @@ export const MOCK_ROUTES = {
     if (params && params.mockparam) {
       query = `?MockParam=${params.mockparam}`;
     }
-    return `/${i18n.t('MockRoute')}/${payload._id}/success${query}`;
+    return `/${i18n.t('MockRoute')}/${payload.id}/success${query}`;
   },
   component: 'espina/shared/test/mock/component.mock',
 };
@@ -15,7 +15,7 @@ export const MOCK_PARAMS = {
   mockparam: 'MockParam',
 };
 export const MOCK_PAYLOAD = {
-  _id: 'MockValue',
+  id: 'MockValue',
 };
 export const MOCK_LOCALSTORAGE = {
   token: '123456',
