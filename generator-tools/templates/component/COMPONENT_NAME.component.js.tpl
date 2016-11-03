@@ -17,4 +17,4 @@ class <%=  componentNameCamelCase %>Component extends SpikeComponent {
 
 };
 
-export default <%=  componentNameCamelCase %>Component;
+module.exports =  <%=  componentNameCamelCase %>Component;
