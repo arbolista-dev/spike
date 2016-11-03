@@ -23,7 +23,7 @@ export default class Route {
   }
 
   get component() {
-    if (this.data.component && this.data.component instanceof String) {
+    if (this.data.component && typeof this.data.component === "string") {
       return require(`../../../shared/components/layouts/${this.data.component}/${this.data.component}.component`);
     } else if (this.data.component) {
       return this.data.component;
