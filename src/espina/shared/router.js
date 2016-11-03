@@ -11,7 +11,7 @@ export default class BaseRouter {
   }
 
   get mainRoutes() {
-    return this.routes.filter(route => route.route_name !== 'Missing');
+    return this.routes.filter(route => route.name !== 'Missing');
   }
 
   findRouteByPath(pathname) {
@@ -27,7 +27,7 @@ export default class BaseRouter {
       pathname: newLocation.pathname,
       query: queryString.parse(newLocation.search),
     };
-    location.route_name = route.name;
+    location.routeName = route.name;
     location.params = route.parseParams(location);
     return location;
   }

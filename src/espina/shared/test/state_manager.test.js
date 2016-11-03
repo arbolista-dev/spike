@@ -22,7 +22,7 @@ function mockSharedStateManagerBehavior() {
       const locationState = StateManager.parseInitialLocation(MOCK_LOCATION, router);
       expect(locationState.pathname).toEqual(MOCK_LOCATION.pathname);
       expect(locationState.query.mockQuery).toEqual('mockValue');
-      expect(locationState.route_name).toEqual('MockRoute');
+      expect(locationState.routeName).toEqual('MockRoute');
       expect(locationState.params.mock1).toEqual('mockValue1');
       expect(locationState.params.mock3).toEqual('mockValue2');
     });

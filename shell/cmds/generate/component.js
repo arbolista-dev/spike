@@ -2,6 +2,7 @@ require('babel-register')({
   presets: ['es2015'],
 });
 const componentGenerator = require('../../../generator-tools/generators/component.generator').default;
+
 exports.command = 'component <name> [--where=where] [-t] [-s] [--rt]';
 exports.desc = 'Generate a new React Component';
 exports.builder = {
@@ -35,8 +36,8 @@ exports.builder = {
     type: 'boolean',
   },
 };
-exports.handler = function (argv) {
-  	componentGenerator(() => {
+exports.handler = () => {
+  componentGenerator(() => {
 
-  	});
+  });
 };

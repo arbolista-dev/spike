@@ -35,6 +35,4 @@ function mockClientRouterBehavior() {
   });
 }
 
-(function run() {
-  mockClientRouterBehavior();
-}());
+(() => mockClientRouterBehavior())();

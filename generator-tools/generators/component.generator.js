@@ -1,7 +1,7 @@
-import { fnGenerate, getPath } from './commons.generator.js';
-import gulp from 'gulp';
-import generateHelper from '../generate_helper';
+/* eslint no-console: 0*/
 import yargs from 'yargs';
+import { fnGenerate, getPath } from './commons.generator';
+import generateHelper from '../generate_helper';
 
 export default (done) => {
   // Name is the last parameter
@@ -32,7 +32,7 @@ export default (done) => {
   ];
   fnGenerate(name, modifiers.map(value =>
     getPath('component', value.prefix, value.enable)
-  ), `${process.env.PWD}/shared/components/${destination}`, 'COMPONENT_NAME');
+  ), `${process.env.PWD}/shared/components/layouts/${destination}`, 'COMPONENT_NAME');
   console.log('Done!');
- 	done();
+  done();
 };

@@ -44,7 +44,7 @@ ApplicationComponent.propTypes = {
   router: React.PropTypes.instanceOf(Router).isRequired,
   i18n: React.PropTypes.object.isRequired,
   // only required in browser
-  createHistory: React.PropTypes.func.isRequired,
+  createHistory: React.PropTypes.func,
   rootComponent: React.PropTypes.func.isRequired,
   rootComponentProps: React.PropTypes.object,
 };

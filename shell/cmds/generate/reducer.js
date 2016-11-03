@@ -20,8 +20,8 @@ exports.builder = {
     type: 'boolean',
   },
 };
-exports.handler = function (argv) {
-  	reducerGenerator(() => {
+exports.handler = () => {
+  reducerGenerator(() => {
 
-  	});
+  });
 };

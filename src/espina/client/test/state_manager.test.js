@@ -35,6 +35,4 @@ function mockClientStateManagerBehavior() {
   });
 }
 
-(function run() {
-  mockClientStateManagerBehavior();
-}());
+(() => mockClientStateManagerBehavior())();

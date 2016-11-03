@@ -19,9 +19,10 @@ export default class Router extends BaseRouter {
   pushRoute(routeName, action, payload, params, hash) {
     const router = this;
     const route = router.routes.findByName(routeName);
-
+    let type;
+    if (action && action.getType instanceof Function) { type = action.getType(); } else if (action && action instanceof String) { type = action; } else { type = 'UPDATE_LOCATION'; }
     const newAction = {
-      type: action ? action.type : 'UPDATE_LOCATION',
+      type,
       payload,
       no_scroll: payload ? payload.no_scroll : false,
       transition: true,
