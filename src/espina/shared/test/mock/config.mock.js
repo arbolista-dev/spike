@@ -1,3 +1,4 @@
+const componentMock = require('espina/shared/test/mock/component.mock');
 
 export const MOCK_ROUTES = {
   name: 'MockRoute',
@@ -9,7 +10,7 @@ export const MOCK_ROUTES = {
     }
     return `/${i18n.t('MockRoute')}/${payload.id}/success${query}`;
   },
-  component: 'espina/shared/test/mock/component.mock',
+  component: componentMock,
 };
 export const MOCK_PARAMS = {
   mockparam: 'MockParam',
