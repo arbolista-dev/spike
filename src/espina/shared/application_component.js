@@ -2,59 +2,57 @@ import React from 'react';
 import { Provider } from 'react-redux';
 import StateManager from 'espina/shared/state_manager';
 import Router from 'espina/shared/router';
+
 class ApplicationComponent extends React.Component {
-	constructor(props, context) {
-		super(props, context);
-  	}
-	get router(){
-		return this.props.router;
-	}
 
-	get state_manager(){
-		 return this.props.state_manager;
-	}
+  getChildContext() {
+    return {
+      stateManager: this.stateManager,
+      router: this.router,
+      i18n: this.props.i18n,
+    };
+  }
+  componentDidMount() {
+    const component = this;
+    component.initializeHistory();
+  }
 
-	getChildContext() {
-		return {
-			state_manager: this.state_manager,
-			router: this.router,
-			i18n: this.props.i18n
-		};
-	}
-	componentDidMount() {
-		let component = this;
-		component.initializeHistory();
-	}
+  get stateManager() {
+    return this.props.stateManager;
+  }
 
-	initializeHistory(){
-		let component = this,
-		createHistory = component.props.createHistory;
-		component.router.initializeHistory(createHistory, component.state_manager.store);
-	}
+  get router() {
+    return this.props.router;
+  }
 
-	render() {
-		return React.createElement(Provider,
-		{
-			store: this.state_manager.store
-		},
-			React.createElement(this.props.rootComponent,this.props.rootComponentProps || {})
-		);
-	}
+  initializeHistory() {
+    const component = this;
+    component.router.initializeHistory(this.props.createHistory, component.stateManager.store);
+  }
+
+  render() {
+    return React.createElement(Provider,
+      {
+        store: this.stateManager.store,
+      },
+    React.createElement(this.props.rootComponent, this.props.rootComponentProps || {}));
+  }
 }
 
 ApplicationComponent.propTypes = {
-	state_manager: React.PropTypes.instanceOf(StateManager).isRequired,
-	router: React.PropTypes.instanceOf(Router).isRequired,
-	i18n: React.PropTypes.object.isRequired,
-		// only required in browser
-	createHistory: React.PropTypes.func,
-	rootComponent: React.PropTypes.func
+  stateManager: React.PropTypes.instanceOf(StateManager).isRequired,
+  router: React.PropTypes.instanceOf(Router).isRequired,
+  i18n: React.PropTypes.object.isRequired,
+  // only required in browser
+  createHistory: React.PropTypes.func,
+  rootComponent: React.PropTypes.func.isRequired,
+  rootComponentProps: React.PropTypes.object,
 };
 
 ApplicationComponent.childContextTypes = {
-	state_manager: React.PropTypes.instanceOf(StateManager).isRequired,
-	router: React.PropTypes.instanceOf(Router).isRequired,
-	i18n: React.PropTypes.object.isRequired
-}
+  stateManager: React.PropTypes.instanceOf(StateManager).isRequired,
+  router: React.PropTypes.instanceOf(Router).isRequired,
+  i18n: React.PropTypes.object.isRequired,
+};
 
 export default ApplicationComponent;

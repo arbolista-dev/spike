@@ -1,4 +1,5 @@
 import BaseRouter from 'espina/shared/router';
-export default class ServerRouter extends BaseRouter{
+
+export default class ServerRouter extends BaseRouter {
 
 }
