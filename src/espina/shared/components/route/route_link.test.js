@@ -9,7 +9,7 @@ import ApplicationComponent from 'espina/shared/application_component';
 import i18n from 'espina/shared/test/mock/i18nFactory.mock';
 import { MOCK_ROUTES, MOCK_STORE, MOCK_PAYLOAD } from 'espina/shared/test/mock/config.mock';
 import { MOCK_REDUCER, MOCK_ACTION_OK } from 'espina/shared/test/mock/reducer.mock';
-import RouteLink from './route_link.component';
+import RouteLink from 'espina/shared/components/route/route_link.component';
 
 function mockRouteLinkComponentBehavior() {
   describe('RouteLink component', () => {
