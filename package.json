@@ -66,7 +66,7 @@
     "path-to-regexp": "^1.6.0",
     "query-string": "^4.2.3",
     "react": "15.3.x",
-    "react-dom": "15.3.x",
+    "react-dom": "15.4.x",
     "react-redux": "4.4.x",
     "redux": "^3.6.0",
     "redux-loop": "^2.2.2",
@@ -92,7 +92,7 @@
     "karma-sourcemap-loader": "0.3.x",
     "karma-spec-reporter": "0.0.x",
     "karma-webpack": "^1.8.0",
-    "react-addons-test-utils": "^15.3.2",
+    "react-addons-test-utils": "15.4.x",
     "webpack": "^1.13.3"
   },
   "bin": {
