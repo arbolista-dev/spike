@@ -41,7 +41,7 @@ class RouteLinkComponent extends SpikeComponent {
 }
 
 RouteLinkComponent.propTypes = {
-  action: React.PropTypes.object.isRequired,
+  action: React.PropTypes.func,
   className: React.PropTypes.object,
   route: React.PropTypes.string.isRequired,
   payload: React.PropTypes.object,
