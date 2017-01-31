@@ -42,7 +42,7 @@ class ApplicationComponent extends React.Component {
 ApplicationComponent.propTypes = {
   stateManager: React.PropTypes.instanceOf(StateManager).isRequired,
   router: React.PropTypes.instanceOf(Router).isRequired,
-  i18n: React.PropTypes.object.isRequired,
+  i18n: React.PropTypes.object,
   // only required in browser
   createHistory: React.PropTypes.func,
   rootComponent: React.PropTypes.func.isRequired,
@@ -52,7 +52,7 @@ ApplicationComponent.propTypes = {
 ApplicationComponent.childContextTypes = {
   stateManager: React.PropTypes.instanceOf(StateManager).isRequired,
   router: React.PropTypes.instanceOf(Router).isRequired,
-  i18n: React.PropTypes.object.isRequired,
+  i18n: React.PropTypes.object,
 };
 
 export default ApplicationComponent;

@@ -21,9 +21,12 @@ export default class Route {
   get path() {
     return this.data.path;
   }
+  get useHash() {
+    return this.data.useHash;
+  }
 
   get component() {
-    if (this.data.component && typeof this.data.component === "string") {
+    if (this.data.component && typeof this.data.component === 'string') {
       return require(`../../../shared/components/layouts/${this.data.component}/${this.data.component}.component`);
     } else if (this.data.component) {
       return this.data.component;
@@ -69,7 +72,8 @@ export default class Route {
   parseParams(location) {
     const route = this;
     const params = {};
-    const tokens = route.getMatch(location.pathname);
+    const tokens = this.useHash ? route.getMatch(location.pathname + location.hash)
+      : route.getMatch(location.pathname);
     if (tokens && tokens.keys.length !== 0) {
       let i = 1;
       tokens.keys.forEach((e) => { params[e.name] = tokens.token[i]; i += 1; });
@@ -85,6 +89,13 @@ export default class Route {
     }
     const routePath = i18n.t(this.key);
     return `/${i18n.language}/${routePath}`;
+  }
+
+  generateHash(params) {
+    if (this.data.generateHash) {
+      return this.data.generateHash(params);
+    }
+    return '';
   }
 
 }

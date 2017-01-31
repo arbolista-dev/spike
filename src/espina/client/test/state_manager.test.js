@@ -12,24 +12,25 @@ function mockClientStateManagerBehavior() {
       stateManager.initializeStore(MOCK_STORE, MOCK_REDUCER);
     });
     it('storage value', () => {
-      window.localStorage = MOCK_LOCALSTORAGE;
+      window.localStorage.setItem('token', MOCK_LOCALSTORAGE.token);
       expect(StateManager.storageValue('token')).toEqual('123456');
     });
     it('storage json', () => {
-      window.localStorage = MOCK_LOCALSTORAGE;
+      window.localStorage.setItem('mockdata', MOCK_LOCALSTORAGE.mockdata);
       expect(StateManager.storageParse('mockdata')).toEqual({ mockkey: 'mockvalue' });
     });
     it('try retrieve invalid key', () => {
-      window.localStorage = MOCK_LOCALSTORAGE;
-      window.sessionStorage = MOCK_LOCALSTORAGE;
+      window.sessionStorage.setItem('mockdata', MOCK_LOCALSTORAGE.mockdata);
+      window.sessionStorage.setItem('token', MOCK_LOCALSTORAGE.token);
       expect(StateManager.storageParse('mock')).toBe(null);
     });
     it('try without localStorage', () => {
-      window.sessionStorage = MOCK_LOCALSTORAGE;
+      window.sessionStorage.setItem('mockdata', MOCK_LOCALSTORAGE.mockdata);
       expect(StateManager.storageParse('mockdata')).toEqual({ mockkey: 'mockvalue' });
     });
     it('try retrieve invalid key without sessionStorage', () => {
-      window.localStorage = MOCK_LOCALSTORAGE;
+      window.localStorage.setItem('mockdata', MOCK_LOCALSTORAGE.mockdata);
+      window.localStorage.setItem('token', MOCK_LOCALSTORAGE.token);
       expect(StateManager.storageParse('mock')).toBe(null);
     });
   });

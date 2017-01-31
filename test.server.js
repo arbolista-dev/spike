@@ -17,7 +17,6 @@ global.navigator = window.navigator;
 const DEFAULT_FILES = [
   'src/espina/server/**/*.test.js',
   'src/espina/shared/**/*.test.js',
-  'src/espina/client/**/*.test.js',
 ];
 
 function interpretFiles(ifiles) {

@@ -14,18 +14,20 @@ export default class BaseRouter {
     return this.routes.filter(route => route.name !== 'Missing');
   }
 
-  findRouteByPath(pathname) {
+  findRouteByPath(location) {
     const router = this;
-    return router.routes.find(route =>
-       route.matchesLocation(pathname)
-    );
+    return router.routes.find((route) => {
+      const path = route.useHash ? (location.pathname + location.hash) : location.pathname;
+      return route.matchesLocation(path);
+    });
   }
 
   parseLocation(newLocation) {
-    const route = this.findRouteByPath(newLocation.pathname);
+    const route = this.findRouteByPath(newLocation);
     const location = {
       pathname: newLocation.pathname,
       query: queryString.parse(newLocation.search),
+      hash: newLocation.hash,
     };
     location.routeName = route.name;
     location.params = route.parseParams(location);
