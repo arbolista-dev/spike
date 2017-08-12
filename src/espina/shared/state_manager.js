@@ -1,13 +1,17 @@
 /* global JS_ENV Map require*/
 
-import { createStore } from 'redux';
+import { createStore, compose, applyMiddleware } from 'redux';
 import { install } from 'redux-loop';
 import { fromJS } from 'immutable';
 
 export default class SharedStateManager {
 
-  initializeStore(initialState, reducer) {
-    this.store = createStore(reducer, initialState, install());
+  initializeStore(initialState, reducer, middlewares = []) {
+    const enhancer = compose(
+      applyMiddleware(...middlewares),
+      install()
+    );
+    this.store = createStore(reducer, initialState, enhancer);
   }
 
   // overridden in client state_manager.

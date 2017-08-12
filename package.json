@@ -1,12 +1,11 @@
 {
   "name": "espina",
-  "version": "1.0.6",
+  "version": "1.1.0",
   "description": "Starter kit and generator for ES6 React Isomorphic webapp (React, Redux, Webpack, Universal-Webpack, Karma, Jasmine)",
   "scripts": {
     "test": "BABEL_DISABLE_CACHE=1 babel-node test.js && eslint --fix test.js src shell generator-tools",
     "build": "babel src/espina --out-dir . --ignore mock.js,test.js,test.html",
-    "lint": "eslint",
-    "prepublish": "npm test && npm run build"
+    "lint": "eslint"
   },
   "repository": {
     "type": "git",
@@ -47,6 +46,7 @@
   },
   "homepage": "https://github.com/arbolista-dev/spike#readme",
   "dependencies": {
+    "babel-plugin-transform-object-rest-spread": "^6.23.0",
     "babel-register": "^6.16.3",
     "commonjs": "0.0.1",
     "eslint": "3.9.x",
@@ -64,7 +64,7 @@
     "path-to-regexp": "^1.6.0",
     "query-string": "^4.2.3",
     "react": "15.3.x",
-    "react-dom": "15.3.x",
+    "react-dom": "^15.3.2",
     "react-redux": "4.4.x",
     "redux": "^3.6.0",
     "redux-loop": "^2.2.2",
